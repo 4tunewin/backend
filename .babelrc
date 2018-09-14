@@ -1,0 +1,26 @@
+{
+    "passPerPreset": true,
+    "presets": [
+        {
+            "plugins": [
+                "transform-flow-strip-types",
+                "transform-runtime",
+                "transform-object-rest-spread"
+            ]
+        },
+        {
+            "passPerPreset": false,
+            "presets": [
+                [
+                    "env",
+                    {
+                        "target": {
+                            "node": "current"
+                        }
+                    }
+                ],
+                "flow"
+            ]
+        }
+    ]
+}

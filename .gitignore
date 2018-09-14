@@ -1,0 +1,19 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Vagrant files
+.vagrant
+
+# Compiled files
+build
+
+# Dependency directory
+node_modules
+
+# Remove mac file 
+.DS_Store
+
+# DB dump directory
+dump
