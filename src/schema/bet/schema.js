@@ -20,6 +20,9 @@ const SignBetPayload = `
                 
         # ECDSA signature of (commitLastBlock, commit)
         signature: Signature!
+
+        # Current gas price in wei
+        gasPrice: String!
     }
 `;
 
