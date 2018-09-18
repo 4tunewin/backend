@@ -9,5 +9,5 @@ export default {
         uri: 'http://localhost:8545',
     },
     // The address corresponding to a private key used to sign placeBet commits.
-    secretSigner: '0xbb5a6a489648143c13fd812d3bae7d000de12f9f',
+    secretSigner: '0x3e4C638383D0DDb11e4B40D6522Fdf1A7A49Bb9c',
 };

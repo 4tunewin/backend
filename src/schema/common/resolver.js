@@ -10,6 +10,6 @@ export const Signature = {
         return '0x' + root.substr(66, 64);
     },
     v: (root, args, context) => {
-        return (parseInt(root.substr(130, 2), 10) + 27).toString(16);
+        return '0x' + (parseInt(root.substr(130, 2), 10) + 27).toString(16);
     },
 };
