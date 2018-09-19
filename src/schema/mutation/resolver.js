@@ -32,6 +32,7 @@ export const Mutation = {
                 ...args.input,
                 block: commitLastBlock,
                 commit,
+                secret: commitHash,
                 signature,
             },
             'Signing a new bet',
