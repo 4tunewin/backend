@@ -2,6 +2,7 @@ import { promisify } from 'bluebird';
 
 import { web3, logger } from '../../providers';
 import { getRandomNumber, getSignature } from './helper';
+import { BetModel } from '../../models';
 import config from '../../config';
 
 // Maximal blocks offset where "commit" is still considered valid
@@ -27,10 +28,21 @@ export const Mutation = {
             config.secretSigner,
         );
 
+        // Save bet in DB
+        const bet = new BetModel({
+            gambler: args.input.address,
+            network: args.input.network,
+            lastBlockNumber: commitLastBlock,
+            commit,
+            commitHash,
+            signature,
+        });
+        await bet.save();
+
         logger.info(
             {
                 ...args.input,
-                block: commitLastBlock,
+                lastBlock: commitLastBlock,
                 commit,
                 secret: commitHash,
                 signature,
