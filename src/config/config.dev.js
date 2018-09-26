@@ -10,4 +10,12 @@ export default {
     },
     // The address corresponding to a private key used to sign placeBet commits.
     secretSigner: '0x3e4C638383D0DDb11e4B40D6522Fdf1A7A49Bb9c',
+    // MongoDB related settibgs
+    mongodb: {
+        uri: 'mongodb://localhost:27017',
+        options: {
+            dbName: 'game',
+            useNewUrlParser: true,
+        },
+    },
 };
