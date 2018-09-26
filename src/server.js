@@ -8,5 +8,7 @@ const server = new ApolloServer({ typeDefs, resolvers });
 
 // Run server on specified port
 server.listen(config.server.port).then(({ url }) => {
-    logger.info(`🚀  Server ready at ${url}`);
+    setTimeout(() => {
+        logger.info(`🚀  Server ready at ${url}`);
+    }, 1000);
 });
