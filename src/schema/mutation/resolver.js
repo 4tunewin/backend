@@ -22,7 +22,7 @@ export const Mutation = {
         // Get hash of provided commit
         const commitHash = web3.sha3(commit, { encoding: 'hex' });
         const signature = await getSignature(
-            commit,
+            commitHash,
             commitLastBlock,
             config.secretSigner,
         );
@@ -46,7 +46,7 @@ export const Mutation = {
         redis.set(commitHash, data, 'EX', 3600);
 
         return {
-            commit,
+            commit: commitHash,
             commitLastBlock,
             signature,
         };
