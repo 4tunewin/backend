@@ -1,6 +1,6 @@
 import { promisify } from 'bluebird';
 
-import { web3, logger } from '../../providers';
+import { web3, logger, redis } from '../../providers';
 import { getRandomNumber, getSignature } from './helper';
 import config from '../../config';
 
@@ -27,17 +27,6 @@ export const Mutation = {
             config.secretSigner,
         );
 
-        // // Save bet in DB
-        // const bet = new BetModel({
-        //     gambler: args.input.address,
-        //     network: args.input.network,
-        //     lastBlockNumber: commitLastBlock,
-        //     commit,
-        //     commitHash,
-        //     signature,
-        // });
-        // await bet.save();
-
         logger.info(
             {
                 ...args.input,
@@ -48,6 +37,13 @@ export const Mutation = {
             },
             'Signing a new bet',
         );
+
+        // Save commit hash and acutual commit for 1 hour
+        const data = JSON.stringify({
+            commit,
+            lastBlock: commitLastBlock,
+        });
+        redis.set(commitHash, data, 'EX', 3600);
 
         return {
             commit,
