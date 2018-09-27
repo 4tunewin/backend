@@ -1,1 +1,0 @@
-export { BetModel } from './Bet';
