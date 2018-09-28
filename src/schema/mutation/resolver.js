@@ -43,7 +43,7 @@ export const Mutation = {
             commit,
             lastBlock: commitLastBlock,
         });
-        redis.set(commitHash, data, 'EX', 3600);
+        redis.set(`commit:${commitHash}`, data, 'EX', 3600);
 
         return {
             commit: commitHash,
