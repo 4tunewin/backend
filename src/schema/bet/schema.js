@@ -1,3 +1,26 @@
+const Bet = `
+    # Game bet entity
+    type Bet {
+        # Gambler address
+        gambler: String!
+
+        # Bet placed amount in wei
+        amount: String!
+
+        # The block hash of the placed bet
+        block: String!
+
+        # Bet mask
+        mask: Number!
+
+        # Keccak256 hash of some secret "reveal" random number
+        commit: String!
+
+        # The transaction hash of placed bet
+        transaction: String!
+    }
+`;
+
 const SignBetInput = `
     # An input for game signature
     input SignBetInput {
@@ -26,4 +49,4 @@ const SignBetPayload = `
     }
 `;
 
-export default () => [SignBetInput, SignBetPayload];
+export default () => [Bet, SignBetInput, SignBetPayload];
