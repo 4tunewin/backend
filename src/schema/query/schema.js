@@ -1,5 +1,6 @@
 export default `
     type Query {
-        status: String
+        # Return list of played games with specified modulo
+        history(modulo: Number): [Game]!
     }
 `;
