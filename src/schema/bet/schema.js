@@ -11,7 +11,7 @@ const Bet = `
         block: String!
 
         # Bet mask
-        mask: Number!
+        mask: Int!
 
         # Keccak256 hash of some secret "reveal" random number
         commit: String!

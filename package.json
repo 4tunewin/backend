@@ -15,11 +15,13 @@
         "ioredis": "^4.0.0",
         "lodash": "^4.17.11",
         "pino": "^5.6.0",
+        "truffle-contract": "^3.0.6",
         "web3": "0.20.6"
     },
     "scripts": {
         "start": "nodemon --exec yarn run babel-node ./src/server.js | pino-pretty -c -l",
-        "test": "jest --watch"
+        "test": "jest --watch",
+        "copy-contracts": "cp -rf ../contract/build/contracts/*.json src/contracts"
     },
     "devDependencies": {
         "babel-plugin-transform-object-rest-spread": "^6.26.0",

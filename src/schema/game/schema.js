@@ -3,9 +3,6 @@ const Game = `
     type Game {
         # Unique ID of the game
         id: ID!
-
-        # The game modulo
-        modulo: Number!
         
         # Placed bet for the game
         bet: Bet!

@@ -17,3 +17,6 @@ node_modules
 
 # DB dump directory
 dump
+
+# Ignore build files of contracts
+src/contracts/*.json
