@@ -16,6 +16,9 @@ const Bet = `
         # Keccak256 hash of some secret "reveal" random number
         commit: String!
 
+        # Game modulo
+        modulo: Int!
+
         # The transaction hash of placed bet
         transaction: String!
     }
