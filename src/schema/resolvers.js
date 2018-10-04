@@ -2,4 +2,5 @@
 export * from './mutation/resolver';
 export * from './query/resolver';
 export * from './common/resolver';
+export * from './game/resolver';
 export * from './bet/resolver';
