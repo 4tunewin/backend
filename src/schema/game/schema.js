@@ -24,10 +24,10 @@ const Reveal = `
         reveal: String!
 
         # The block hash of reveal
-        block: String!
+        blockHash: String!
 
         # The transaction hash of reveal
-        transaction: String!
+        transactionHash: String!
     }
 `;
 

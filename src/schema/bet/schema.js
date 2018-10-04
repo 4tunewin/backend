@@ -8,7 +8,7 @@ const Bet = `
         amount: String!
 
         # The block hash of the placed bet
-        block: String!
+        blockHash: String!
 
         # Bet mask
         mask: Int!
@@ -17,7 +17,7 @@ const Bet = `
         commit: String!
 
         # The transaction hash of placed bet
-        transaction: String!
+        transactionHash: String!
     }
 `;
 
