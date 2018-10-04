@@ -7,8 +7,9 @@ import config from './config';
 const server = new ApolloServer({ typeDefs, resolvers });
 
 // Run server on specified port
-server.listen(config.server.port).then(({ url }) => {
+server.listen(config.server.port).then(({ url, subscriptionsUrl }) => {
     setTimeout(() => {
-        logger.info(`🚀  Server ready at ${url}`);
+        logger.info(`🚀 Server ready at ${url}`);
+        logger.info(`🚀 Subscriptions ready at ${subscriptionsUrl}`);
     }, 1000);
 });

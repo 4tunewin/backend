@@ -6,6 +6,7 @@ import Redis from 'ioredis';
 import logger from '../providers/logger';
 import config from '../config';
 
+// Default redis provider
 const redis = new Redis(config.redis.host, config.redis.port);
 redis.on('ready', () => {
     logger.info(
@@ -15,4 +16,7 @@ redis.on('ready', () => {
     );
 });
 
-export default redis;
+// Provider only for subscription commands
+const redisSub = new Redis(config.redis.host, config.redis.port);
+
+export { redis, redisSub };
