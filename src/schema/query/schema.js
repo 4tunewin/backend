@@ -1,6 +1,11 @@
 export default `
     type Query {
         # Return list of played games with specified modulo
-        history(modulo: Int): [Game]!
+        history(
+            # Game modulo
+            modulo: Int,
+            # Limit number of results
+            limit: Int
+        ): [Game]!
     }
 `;
