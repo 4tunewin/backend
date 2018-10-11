@@ -14,7 +14,7 @@ const Game = `
         payment: String!
 
         # Jackpot issued to gambler
-        jackpotPayment: String!
+        jackpotPayment: String
     }
 `;
 
