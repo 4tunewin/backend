@@ -16,4 +16,11 @@ export const Query = {
             return JSON.parse(game);
         });
     },
+
+    /**
+     * Returns statistics
+     */
+    stats: (obj, args, context) => {
+        return {};
+    },
 };

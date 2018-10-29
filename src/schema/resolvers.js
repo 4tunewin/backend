@@ -6,3 +6,4 @@ export * from './subscription/resolver';
 export * from './common/resolver';
 export * from './game/resolver';
 export * from './bet/resolver';
+export * from './stats/resolver';

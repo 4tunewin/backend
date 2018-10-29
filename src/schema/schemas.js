@@ -7,3 +7,4 @@ export { default as Subscription } from './subscription/schema';
 export { default as Common } from './common/schema';
 export { default as Bet } from './bet/schema';
 export { default as Game } from './game/schema';
+export { default as Stats } from './stats/schema';

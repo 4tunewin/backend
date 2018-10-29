@@ -7,5 +7,8 @@ export default `
             # Limit number of results
             limit: Int
         ): [Game]!
+
+        # Return games statistics
+        stats: Stats!
     }
 `;
