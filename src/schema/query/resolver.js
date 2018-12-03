@@ -1,5 +1,5 @@
 import Promise from 'bluebird';
-import { map, slice } from 'lodash';
+import { map, slice, reverse } from 'lodash';
 import { web3, redis } from '../../providers';
 
 export const Query = {
@@ -8,13 +8,16 @@ export const Query = {
      */
     history: async (obj, args, context) => {
         // Number of history results to show by default
-        const HISTORY_DEFAULT_LIMIT = 25;
+        const HISTORY_DEFAULT_LIMIT = 50;
 
         const keys = await redis.keys('game:*');
-        return map(slice(keys, 0, HISTORY_DEFAULT_LIMIT + 1), async key => {
-            const game = await redis.get(key);
-            return JSON.parse(game);
-        });
+        return map(
+            slice(reverse(keys), 0, HISTORY_DEFAULT_LIMIT + 1),
+            async key => {
+                const game = await redis.get(key);
+                return JSON.parse(game);
+            },
+        );
     },
 
     /**
