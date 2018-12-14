@@ -3,9 +3,14 @@
  *
  * Environment can be specifiedn over NODE_ENV variable
  */
+import dotenv from 'dotenv';
+
 import development from './config.dev';
 import production from './config.prod';
+import staging from './config.stage';
 
-const env = process.NODE_ENV || 'development';
+dotenv.config();
 
-export default { development, production }[env];
+const env = process.env.NODE_ENV || 'development';
+
+export default { development, production, staging }[env];

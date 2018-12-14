@@ -24,7 +24,7 @@ export const Mutation = {
         const signature = await getSignature(
             commitHash,
             commitLastBlock,
-            config.secretSigner,
+            web3.eth.accounts[0],
         );
 
         logger.info(
