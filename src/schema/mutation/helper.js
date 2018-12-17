@@ -20,7 +20,7 @@ export const getRandomNumber = bytes => {
  * @param {*} secretSigner
  */
 export const getSignature = (commit, lastBlockNumber, secretSigner) => {
-    const sign = promisify(web3.eth.sign);
+    const sign = promisify(web3.eth.sign, { context: web3.eth });
 
     const payload = [
         '0x',

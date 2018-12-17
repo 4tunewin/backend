@@ -12,8 +12,14 @@ export const Mutation = {
      * Generate a new bet signature
      */
     signBet: async (root, args, context) => {
+        // Get current accounts
+        const getAccounts = promisify(web3.eth.getAccounts, { context: web3 });
+        const accounts = await getAccounts();
+
         // Get current block number and append offset
-        const getBlockNumber = promisify(web3.eth.getBlockNumber);
+        const getBlockNumber = promisify(web3.eth.getBlockNumber, {
+            context: web3.eth,
+        });
         const commitLastBlock = (await getBlockNumber()) + COMMIT_BLOCK_OFFSET;
 
         // Generate random 32-bits hash
@@ -24,7 +30,7 @@ export const Mutation = {
         const signature = await getSignature(
             commitHash,
             commitLastBlock,
-            web3.eth.accounts[0],
+            accounts[0],
         );
 
         logger.info(
