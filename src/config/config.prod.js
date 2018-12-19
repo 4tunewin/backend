@@ -7,6 +7,7 @@ export default {
     // Ethereum network settings
     network: {
         uri: 'http://localhost:8545',
+        provider: 'privateKey',
     },
     // Redis related settibgs
     redis: {

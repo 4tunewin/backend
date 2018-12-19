@@ -7,13 +7,23 @@ import PrivateKeyProvider from 'truffle-privatekey-provider';
 
 import config from '../config';
 
-// const provider = new PrivateKeyProvider(
-//     process.env.PRIVATE_KEY,
-//     config.network.uri,
-// );
+/**
+ * Create and return web3 provider based on provided config
+ */
+const initProvider = config => {
+    switch (config.provider) {
+        case 'privateKey':
+            return new PrivateKeyProvider(
+                process.env.PRIVATE_KEY,
+                config.network.uri,
+            );
+        case 'http':
+        default: {
+            return new Web3.providers.HttpProvider(config.uri);
+        }
+    }
+};
 
-const provider = new Web3.providers.HttpProvider(config.network.uri);
-
-const web3 = new Web3(provider);
+const web3 = new Web3(initProvider(config.network));
 
 export default web3;
