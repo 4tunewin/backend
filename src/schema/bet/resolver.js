@@ -6,7 +6,7 @@ export const SignBetPayload = {
      * Resolve BigNumber value as decimal number
      */
     commit: (root, args, context) => {
-        return '0x' + root.commit.toString(16);
+        return root.commit.toString(16);
     },
 
     /**
