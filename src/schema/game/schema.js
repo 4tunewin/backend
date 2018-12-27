@@ -21,7 +21,7 @@ const Game = `
 const Reveal = `
     type Reveal {
         # Secret number issues by croupier for the game
-        reveal: String!
+        secret: String!
 
         # The block hash of reveal
         blockHash: String!

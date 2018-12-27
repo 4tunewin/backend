@@ -4,7 +4,6 @@ export default `
         game: Game
 
         # Games statistics
-        wagers: StatsWagers
-        winners: StatsWinners
+        stats: Stats
     }
 `;

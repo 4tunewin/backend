@@ -3,6 +3,7 @@ const Stats = `
     type Stats {
         wagers: StatsWagers!
         winners: [StatsWinners]!
+        jackpotWinner: JackpotWinner
     }
 `;
 
@@ -22,4 +23,12 @@ const StatsWinners = `
     }
 `;
 
-export default () => [Stats, StatsWagers, StatsWinners];
+const JackpotWinner = `
+    type JackpotWinner {
+        beneficiary: String!
+        amount: String!
+        transactionHash: String!
+    }
+`;
+
+export default () => [Stats, StatsWagers, StatsWinners, JackpotWinner];

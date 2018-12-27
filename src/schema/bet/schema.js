@@ -19,6 +19,9 @@ const Bet = `
         # Game modulo
         modulo: Int!
 
+        # Block number of bet transaction
+        blockNumber: Int!
+
         # The transaction hash of placed bet
         transactionHash: String!
     }

@@ -16,6 +16,13 @@ export const Stats = {
     winners: (obj, args, context) => {
         return redis.keys('winner:*');
     },
+
+    /**
+     * Return latest jackpot winner
+     */
+    jackpotWinner: (obj, args, context) => {
+        return redis.get('jackpotWinner');
+    },
 };
 
 export const StatsWagers = {

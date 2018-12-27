@@ -9,16 +9,11 @@ redisSub.on('message', (channel, message) => {
         case 'game':
             const game = JSON.parse(message);
             pubsub.publish('GAME', { game });
-            // pubsub.publish('STATS', { stats: { wagers: game } });
+            pubsub.publish('STATS', { stats: {} });
             break;
-        // case 'winner':
-        //     const winner = JSON.parse(message);
-        //     pubsub.publish('STATS', {
-        //         stats: {
-        //             winners: [winner],
-        //         },
-        //     });
-        //     break;
+        case 'jackpotWinner':
+            pubsub.publish('STATS', { stats: {} });
+            break;
         default:
             break;
     }
@@ -28,7 +23,7 @@ export const Subscription = {
     game: {
         subscribe: () => pubsub.asyncIterator(['GAME']),
     },
-    wagers: {
-        subscribe: () => pubsub.asyncIterator(['WAGERS']),
+    stats: {
+        subscribe: () => pubsub.asyncIterator(['STATS']),
     },
 };

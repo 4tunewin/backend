@@ -1,5 +1,5 @@
 import Promise from 'bluebird';
-import { map, slice, reverse } from 'lodash';
+import { slice, orderBy } from 'lodash';
 import { web3, redis } from '../../providers';
 
 export const Query = {
@@ -11,13 +11,15 @@ export const Query = {
         const HISTORY_DEFAULT_LIMIT = 50;
 
         const keys = await redis.keys('game:*');
-        return map(
-            slice(reverse(keys), 0, HISTORY_DEFAULT_LIMIT + 1),
+        const items = await Promise.map(
+            slice(keys, 0, HISTORY_DEFAULT_LIMIT + 1),
             async key => {
                 const game = await redis.get(key);
                 return JSON.parse(game);
             },
         );
+
+        return orderBy(items, ['createdAt'], ['desc']);
     },
 
     /**
