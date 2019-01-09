@@ -14,8 +14,8 @@ const initProvider = config => {
     switch (config.provider) {
         case 'privateKey':
             return new PrivateKeyProvider(
-                process.env.PRIVATE_KEY,
-                config.network.uri,
+                process.env.WEB3_PRIVATE_KEY,
+                config.uri,
             );
         case 'http':
         default: {

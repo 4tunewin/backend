@@ -11,15 +11,22 @@ export const Query = {
         const HISTORY_DEFAULT_LIMIT = 50;
 
         const keys = await redis.keys('game:*');
-        const items = await Promise.map(
-            slice(keys, 0, HISTORY_DEFAULT_LIMIT + 1),
-            async key => {
-                const game = await redis.get(key);
-                return JSON.parse(game);
-            },
+        const items = await Promise.map(keys, async key => {
+            const game = await redis.get(key);
+            return JSON.parse(game);
+        });
+
+        // Oreder games by creation date
+        const orederedItems = orderBy(items, ['createdAt'], ['desc']);
+
+        // Limit games to provided limit or to default limit
+        const slicedItems = slice(
+            orederedItems,
+            0,
+            args.limit || HISTORY_DEFAULT_LIMIT + 1,
         );
 
-        return orderBy(items, ['createdAt'], ['desc']);
+        return slicedItems;
     },
 
     /**

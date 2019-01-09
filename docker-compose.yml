@@ -1,0 +1,14 @@
+version: '2'
+services:
+    graphql:
+        container_name: graphql
+        image: 121364511741.dkr.ecr.us-east-1.amazonaws.com/graphql:latest
+        restart: always
+        environment:
+            - NODE_ENV=staging
+        networks:
+            - redis
+
+networks:
+    redis:
+        external: true

@@ -1,3 +1,11 @@
+const GameStatus = `
+    # Played game status
+    enum GameStatus {
+        SUCCESS
+        FAIL
+    }
+`;
+
 const Game = `
     # Played game result
     type Game {
@@ -11,10 +19,16 @@ const Game = `
         reveal: Reveal!
 
         # Payment issued to gambler
-        payment: String!
+        payment: String
 
         # Jackpot issued to gambler
         jackpotPayment: String
+
+        # Game status
+        status: GameStatus!
+
+        # Describe reason why current game has failed processing
+        error: String
     }
 `;
 
@@ -24,11 +38,11 @@ const Reveal = `
         secret: String!
 
         # The block hash of reveal
-        blockHash: String!
+        blockHash: String
 
         # The transaction hash of reveal
-        transactionHash: String!
+        transactionHash: String
     }
 `;
 
-export default () => [Game, Reveal];
+export default () => [Game, GameStatus, Reveal];

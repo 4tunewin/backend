@@ -6,12 +6,12 @@ export default {
     },
     // Ethereum network settings
     network: {
-        uri: 'http://localhost:8545',
+        uri: 'http://frontier.4tune.win:8545',
         provider: 'privateKey',
     },
     // Redis related settibgs
     redis: {
-        host: 'localhost',
+        host: 'redis.4tune.win',
         port: 6379,
     },
 };

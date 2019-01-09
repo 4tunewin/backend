@@ -1,0 +1,40 @@
+stages:
+    - build
+    - production
+
+variables:
+    CONTAINER_BUILD_IMAGE: 121364511741.dkr.ecr.us-east-1.amazonaws.com/graphql:$CI_BUILD_REF
+    CONTAINER_RELEASE_IMAGE: 121364511741.dkr.ecr.us-east-1.amazonaws.com/graphql:latest
+
+before_script:
+    # AWS config
+    - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY
+    - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_KEY
+
+    # Auth
+    - CERT=`aws ecr get-login --no-include-email --region us-east-1`
+    - ${CERT}
+
+build:
+    stage: build
+    script:
+        - docker build -t $CONTAINER_BUILD_IMAGE .
+        - docker push $CONTAINER_BUILD_IMAGE
+    only:
+        - master
+    tags:
+        - production
+
+production:
+    stage: production
+    when: manual
+    script:
+        - docker pull $CONTAINER_BUILD_IMAGE
+        - docker tag $CONTAINER_BUILD_IMAGE $CONTAINER_RELEASE_IMAGE
+        - docker push $CONTAINER_RELEASE_IMAGE
+
+        - docker-compose up -d --force-recreate
+    only:
+        - master
+    tags:
+        - production

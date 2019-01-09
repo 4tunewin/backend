@@ -6,7 +6,7 @@ export default {
     },
     // Ethereum network settings
     network: {
-        uri: 'https://rinkeby.infura.io/v3/1f972bfec78a47be89e68ca2dd70065c',
+        uri: 'http://54.85.207.4:9545',
         provider: 'privateKey',
     },
     // Redis related settibgs
