@@ -23,7 +23,7 @@
     "scripts": {
         "start": "nodemon --exec yarn run babel-node ./src/server.js | pino-pretty -c -l",
         "test": "jest --watch",
-        "copy-contracts": "cp -rf ../contract/build/contracts/*.json src/contracts"
+        "build": "rm -rf build/* && babel src --ignore __tests__ --out-dir build --copy-files"
     },
     "devDependencies": {
         "babel-plugin-transform-object-rest-spread": "^6.26.0",
