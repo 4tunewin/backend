@@ -6,12 +6,12 @@ export default {
     },
     // Ethereum network settings
     network: {
-        uri: 'http://54.85.207.4:9545',
+        uri: 'http://kovan.4tune.win:9545',
         provider: 'privateKey',
     },
     // Redis related settibgs
     redis: {
-        host: 'localhost',
+        host: 'redis',
         port: 6379,
     },
 };
