@@ -5,7 +5,7 @@ services:
         image: 121364511741.dkr.ecr.us-east-1.amazonaws.com/graphql:latest
         restart: always
         environment:
-            - NODE_ENV=staging
+            - NODE_ENV=production
         networks:
             - redis
 
