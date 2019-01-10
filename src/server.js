@@ -6,7 +6,13 @@ import { web3, logger } from './providers';
 import config from './config';
 
 // Init server with provided type definitions and their resolvers
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    onHealthCheck: () => {
+        return Promise.resolve();
+    },
+});
 
 const getSecretSigner = async () => {
     const getAccounts = promisify(web3.eth.getAccounts, { context: web3.eth });
@@ -25,6 +31,9 @@ const getSecretSigner = async () => {
         logger.info(
             { secretSigner, rpc: config.network.uri },
             `🚀 Server ready at ${url}`,
+        );
+        logger.info(
+            `🏥 Try your health check at: ${url}.well-known/apollo/server-health`,
         );
         logger.info(`🚀 Subscriptions ready at ${subscriptionsUrl}`);
     }, 1000);
