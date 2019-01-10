@@ -27,6 +27,10 @@ const Game = `
         # Game status
         status: GameStatus!
 
+        # Signifies if game bet was refunded
+        # NOTE: check error for details
+        refunded: Boolean
+
         # Describe reason why current game has failed processing
         error: String
     }
