@@ -11,7 +11,7 @@ export default {
     },
     // Redis related settibgs
     redis: {
-        host: 'redis',
+        host: 'localhost',
         port: 6379,
     },
 };
