@@ -6,7 +6,6 @@ export default {
     },
     // Ethereum network settings
     network: {
-        // uri: 'ws://kovan.4tune.win:9546',
         uri: 'wss://kovan.infura.io/ws',
         provider: 'ws',
     },
