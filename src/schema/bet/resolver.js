@@ -13,7 +13,6 @@ export const SignBetPayload = {
      * Return current gas price based on last X blocks
      */
     gasPrice: (root, args, context) => {
-        const getGasPrice = promisify(web3.eth.getGasPrice);
-        return getGasPrice().then(price => price.toNumber());
+        return web3.eth.getGasPrice();
     },
 };

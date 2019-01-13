@@ -27,17 +27,6 @@ const Bet = `
     }
 `;
 
-const SignBetInput = `
-    # An input for game signature
-    input SignBetInput {
-        # Gambler address
-        address: String
-
-        # Network ID
-        network: Int!
-    }
-`;
-
 const SignBetPayload = `
     # A payload for game signature
     type SignBetPayload {
@@ -55,4 +44,4 @@ const SignBetPayload = `
     }
 `;
 
-export default () => [Bet, SignBetInput, SignBetPayload];
+export default () => [Bet, SignBetPayload];

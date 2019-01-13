@@ -6,8 +6,9 @@ export default {
     },
     // Ethereum network settings
     network: {
-        uri: 'http://kovan.4tune.win:9545',
-        provider: 'privateKey',
+        // uri: 'ws://kovan.4tune.win:9546',
+        uri: 'wss://kovan.infura.io/ws',
+        provider: 'ws',
     },
     // Redis related settibgs
     redis: {

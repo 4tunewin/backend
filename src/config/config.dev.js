@@ -6,8 +6,8 @@ export default {
     },
     // Ethereum network settings
     network: {
-        uri: 'http://localhost:8545',
-        provider: 'http',
+        uri: 'ws://localhost:8546',
+        provider: 'ws',
     },
     // Redis related settibgs
     redis: {

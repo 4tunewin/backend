@@ -14,22 +14,14 @@ const server = new ApolloServer({
     },
 });
 
-const getSecretSigner = async () => {
-    const getAccounts = promisify(web3.eth.getAccounts, { context: web3.eth });
-    const accounts = await getAccounts();
-
-    return accounts[0];
-};
-
 // Run server on specified port
 (async () => {
     const { url, subscriptionsUrl } = await server.listen(config.server.port);
-
-    const secretSigner = await getSecretSigner();
+    const account = await web3.eth.defaultAccount;
 
     setTimeout(() => {
         logger.info(
-            { secretSigner, rpc: config.network.uri },
+            { secretSigner: account, rpc: config.network.uri },
             `🚀 Server ready at ${url}`,
         );
         logger.info(

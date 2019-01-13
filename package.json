@@ -1,7 +1,7 @@
 {
     "name": "graphql",
     "version": "1.0.0",
-    "main": "index.js",
+    "main": "src/server.js",
     "repository": "git@gitlab.com:bc-games/graphql.git",
     "license": "MIT",
     "dependencies": {
@@ -17,8 +17,7 @@
         "lodash": "^4.17.11",
         "pino": "^5.6.0",
         "truffle-contract": "^3.0.6",
-        "truffle-privatekey-provider": "^1.0.0",
-        "web3": "0.20.6"
+        "web3": "^1.0.0-beta.37"
     },
     "scripts": {
         "start": "nodemon --exec yarn run babel-node ./src/server.js | pino-pretty -c -l",

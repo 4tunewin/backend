@@ -1,5 +1,3 @@
-import { promisify } from 'bluebird';
-
 import { web3, logger, redis } from '../../providers';
 import { getRandomNumber, getSignature } from './helper';
 import config from '../../config';
@@ -13,29 +11,27 @@ export const Mutation = {
      */
     signBet: async (root, args, context) => {
         // Get current accounts
-        const getAccounts = promisify(web3.eth.getAccounts, { context: web3 });
-        const accounts = await getAccounts();
+        const account = web3.eth.defaultAccount;
 
         // Get current block number and append offset
-        const getBlockNumber = promisify(web3.eth.getBlockNumber, {
-            context: web3.eth,
-        });
-        const commitLastBlock = (await getBlockNumber()) + COMMIT_BLOCK_OFFSET;
+        const currentBlockNumber = await web3.eth.getBlockNumber();
+        const commitLastBlock = currentBlockNumber + COMMIT_BLOCK_OFFSET;
 
         // Generate random 32-bits hash
         const commit = getRandomNumber(32);
 
         // Get hash of provided commit
-        const commitHash = web3.sha3(commit, { encoding: 'hex' });
+        const commitHash = web3.utils.sha3(commit, {
+            encoding: 'hex',
+        });
         const signature = await getSignature(
             commitHash,
             commitLastBlock,
-            accounts[0],
+            account,
         );
 
         logger.info(
             {
-                ...args.input,
                 lastBlock: commitLastBlock,
                 commit,
                 secret: commitHash,

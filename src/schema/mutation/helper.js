@@ -28,10 +28,10 @@ export const getSignature = (commit, lastBlockNumber, secretSigner) => {
         commit.substr(2),
     ].join('');
 
-    const payloadHash = web3.sha3(payload, {
+    const payloadHash = web3.utils.sha3(payload, {
         encoding: 'hex',
     });
 
     // Sign payload with secret signer address
-    return sign(secretSigner, payloadHash);
+    return sign(payloadHash, secretSigner);
 };
