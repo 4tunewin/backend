@@ -6,8 +6,8 @@ export default {
     },
     // Ethereum network settings
     network: {
-        uri: 'wss://kovan.infura.io/ws',
-        provider: 'ws',
+        uri: 'https://kovan.infura.io/v3/1f972bfec78a47be89e68ca2dd70065c',
+        provider: 'http',
     },
     // Redis related settibgs
     redis: {
