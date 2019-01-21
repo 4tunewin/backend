@@ -1,5 +1,5 @@
 import { web3, logger, redis } from '../../providers';
-import { getRandomNumber, getSignature } from './helper';
+import { getSignature } from './helper';
 import config from '../../config';
 
 // Maximal blocks offset where "commit" is still considered valid
@@ -18,12 +18,10 @@ export const Mutation = {
         const commitLastBlock = currentBlockNumber + COMMIT_BLOCK_OFFSET;
 
         // Generate random 32-bits hash
-        const commit = getRandomNumber(32);
+        const commit = web3.utils.randomHex(32);
 
         // Get hash of provided commit
-        const commitHash = web3.utils.sha3(commit, {
-            encoding: 'hex',
-        });
+        const commitHash = web3.utils.sha3(commit, { encoding: 'hex' });
         const signature = await getSignature(
             commitHash,
             commitLastBlock,

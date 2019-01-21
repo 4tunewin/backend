@@ -1,17 +1,7 @@
-import crypto from 'crypto';
 import { promisify } from 'bluebird';
 import { padStart } from 'lodash';
 
 import { web3 } from '../../providers';
-
-/**
- * Generate random BigNumber with specified number of bits
- *
- * @param {*} bytes - Number of bytes of random number
- */
-export const getRandomNumber = bytes => {
-    return '0x' + crypto.randomBytes(bytes).toString('hex');
-};
 
 /**
  * Sign bet with provided data and secret signer address

@@ -17,10 +17,7 @@ export const SignBetPayload = {
      * Return current gas price based on last X blocks
      */
     gasPrice: async (root, args, context) => {
-        return web3.eth.getGasPrice();
-        // const currentGasPrice = await web3.eth.getGasPrice();
-        // return new web3.utils.BN(currentGasPrice)
-        //     .add(new web3.utils.BN(GAS_PRICE_EXTRA))
-        //     .toString();
+        const currentGasPrice = await web3.eth.getGasPrice();
+        return currentGasPrice * 1.4; // Add 40% to gas price
     },
 };
