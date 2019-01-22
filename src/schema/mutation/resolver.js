@@ -3,7 +3,7 @@ import { getSignature } from './helper';
 import config from '../../config';
 
 // Maximal blocks offset where "commit" is still considered valid
-const COMMIT_BLOCK_OFFSET = 200;
+const COMMIT_BLOCK_OFFSET = 250;
 
 export const Mutation = {
     /**
@@ -43,7 +43,8 @@ export const Mutation = {
             commit,
             lastBlock: commitLastBlock,
         });
-        redis.set(`commit:${commitHash}`, data, 'EX', 3600);
+
+        await redis.set(`commit:${commitHash}`, data, 'EX', 3600);
 
         return {
             commit: commitHash,

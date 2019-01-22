@@ -10,8 +10,6 @@ import { web3 } from '../../providers';
  * @param {*} secretSigner
  */
 export const getSignature = (commit, lastBlockNumber, secretSigner) => {
-    const sign = promisify(web3.eth.sign, { context: web3.eth });
-
     const payload = [
         '0x',
         padStart(lastBlockNumber.toString(16), 10, 0),
@@ -23,5 +21,5 @@ export const getSignature = (commit, lastBlockNumber, secretSigner) => {
     });
 
     // Sign payload with secret signer address
-    return sign(payloadHash, secretSigner);
+    return web3.eth.sign(payloadHash, secretSigner);
 };
