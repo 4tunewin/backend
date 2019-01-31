@@ -23,6 +23,13 @@ export const Stats = {
     jackpotWinner: (obj, args, context) => {
         return redis.get('jackpotWinner');
     },
+
+    /**
+     * Return number of online users
+     */
+    online: (obj, args, context) => {
+        return redis.get('online');
+    },
 };
 
 export const StatsWagers = {

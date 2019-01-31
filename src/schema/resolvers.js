@@ -7,3 +7,5 @@ export * from './common/resolver';
 export * from './game/resolver';
 export * from './bet/resolver';
 export * from './stats/resolver';
+export * from './user/resolver';
+export * from './chat/resolver';

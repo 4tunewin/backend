@@ -4,6 +4,7 @@ const Stats = `
         wagers: StatsWagers!
         winners: [StatsWinners]!
         jackpotWinner: JackpotWinner
+        online: Int!
     }
 `;
 

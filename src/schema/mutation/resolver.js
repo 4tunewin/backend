@@ -1,3 +1,5 @@
+import uuid from 'uuid';
+
 import { web3, logger, redis } from '../../providers';
 import { getSignature } from './helper';
 import config from '../../config';
@@ -51,5 +53,53 @@ export const Mutation = {
             commitLastBlock,
             signature,
         };
+    },
+
+    /**
+     * Register a new user
+     */
+    registerUser: async (obj, args, context) => {
+        const { address, username } = args.input;
+
+        // Validate address
+        if (address.length !== 42) {
+            throw new Error('Invalid address');
+        }
+
+        // Validate username
+        const usernameExists = await redis.sismember('usernames', username);
+        if (usernameExists) {
+            throw new Error('Username is taken');
+        }
+
+        const user = { address, username };
+        await redis
+            .pipeline()
+            .set(`user:${address}`, JSON.stringify(user))
+            .sadd('usernames', username)
+            .exec();
+
+        return user;
+    },
+
+    /**
+     * Send a new message to the chat
+     */
+    sendMessage: async (obj, args, context) => {
+        const message = {
+            id: uuid.v4(),
+            from: args.input.from,
+            text: args.input.message,
+            createdAt: Date.now(),
+        };
+
+        await redis
+            .pipeline()
+            .rpush('messages', JSON.stringify(message))
+            .ltrim('messages', -25, -1) // Keep last 25 messages
+            .publish('message', JSON.stringify(message))
+            .exec();
+
+        return message;
     },
 };

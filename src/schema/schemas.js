@@ -8,3 +8,5 @@ export { default as Common } from './common/schema';
 export { default as Bet } from './bet/schema';
 export { default as Game } from './game/schema';
 export { default as Stats } from './stats/schema';
+export { default as User } from './user/schema';
+export { default as Chat } from './chat/schema';

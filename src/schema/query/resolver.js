@@ -1,5 +1,5 @@
 import Promise from 'bluebird';
-import { slice, orderBy } from 'lodash';
+import { slice, orderBy, map } from 'lodash';
 import { web3, redis } from '../../providers';
 
 export const Query = {
@@ -34,5 +34,25 @@ export const Query = {
      */
     stats: (obj, args, context) => {
         return {};
+    },
+
+    /**
+     * Return user assigned to specified address
+     */
+    user: async (obj, args, context) => {
+        const user = await redis.get(`user:${args.address}`);
+        if (!user) {
+            return null;
+        }
+
+        return JSON.parse(user);
+    },
+
+    /**
+     * Returns list of messages
+     */
+    messages: async (obj, args, context) => {
+        const messages = await redis.lrange('messages', 0, -1);
+        return map(messages, JSON.parse);
     },
 };

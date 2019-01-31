@@ -2,7 +2,7 @@ import { ApolloServer, graphql } from 'apollo-server';
 import { promisify } from 'bluebird';
 
 import { typeDefs, resolvers } from './schema';
-import { web3, logger } from './providers';
+import { web3, logger, redis } from './providers';
 import config from './config';
 
 // Init server with provided type definitions and their resolvers
@@ -11,6 +11,23 @@ const server = new ApolloServer({
     resolvers,
     onHealthCheck: () => {
         return Promise.resolve();
+    },
+    subscriptions: {
+        // Track online users
+        onConnect: () => {
+            redis
+                .pipeline()
+                .incr('online')
+                .publish('online', 1)
+                .exec();
+        },
+        onDisconnect: () => {
+            redis
+                .pipeline()
+                .decr('online')
+                .publish('online', 1)
+                .exec();
+        },
     },
 });
 

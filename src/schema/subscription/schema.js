@@ -8,5 +8,8 @@ export default `
 
         # Games statistics
         stats: Stats
+
+        # Stream of chat messages
+        messages: Message
     }
 `;

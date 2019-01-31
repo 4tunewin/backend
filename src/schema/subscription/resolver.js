@@ -3,16 +3,21 @@ import { redisSub } from '../../providers';
 
 const pubsub = new PubSub();
 
-redisSub.subscribe('game', 'winner', 'jackpotWinner');
+redisSub.subscribe('game', 'winner', 'jackpotWinner', 'message', 'online');
 redisSub.on('message', (channel, message) => {
     switch (channel) {
         case 'game':
-            const game = JSON.parse(message);
-            pubsub.publish('GAME', { game });
+            pubsub.publish('GAME', { game: JSON.parse(message) });
             pubsub.publish('STATS', { stats: {} });
             break;
         case 'jackpotWinner':
             pubsub.publish('STATS', { stats: {} });
+            break;
+        case 'online':
+            pubsub.publish('STATS', { stats: {} });
+            break;
+        case 'message':
+            pubsub.publish('MESSAGE', { messages: JSON.parse(message) });
             break;
         default:
             break;
@@ -25,5 +30,8 @@ export const Subscription = {
     },
     stats: {
         subscribe: () => pubsub.asyncIterator(['STATS']),
+    },
+    messages: {
+        subscribe: () => pubsub.asyncIterator(['MESSAGE']),
     },
 };

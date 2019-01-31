@@ -10,5 +10,14 @@ export default `
 
         # Return games statistics
         stats: Stats!
+
+        # Request user details for provided address
+        user(
+            # Wallet address
+            address: String!
+        ): User
+
+        # Returns list of messages
+        messages: [Message]!
     }
 `;
