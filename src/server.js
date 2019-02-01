@@ -36,6 +36,9 @@ const server = new ApolloServer({
     const { url, subscriptionsUrl } = await server.listen(config.server.port);
     const account = await web3.eth.defaultAccount;
 
+    // Reset counter of online users
+    redis.set('online', 0);
+
     setTimeout(() => {
         logger.info(
             { secretSigner: account, rpc: config.network.uri },
